@@ -1,4 +1,4 @@
-data = open('slam.txt', 'r').read()
+data = open('localize.txt', 'r').read()
 
 odometry = [[float(j) for j in i.split(' ')[2:]] for i in data.split('\n') if 'VERTEX_SE2' == i.split(' ')[0]]
 print(str(odometry).replace('[','{').replace(']', '}'))

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arnav/landmark/src/slam/localize_offline.cc
+bits/stdc++.h
+-
+gtsam/geometry/Pose2.h
+-
+gtsam/geometry/Point2.h
+-
+gtsam/nonlinear/NonlinearFactorGraph.h
+-
+gtsam/slam/BetweenFactor.h
+-
+gtsam/slam/BearingRangeFactor.h
+-
+gtsam/geometry/Rot2.h
+-
+gtsam/nonlinear/LevenbergMarquardtOptimizer.h
+-
+gtsam/nonlinear/NonlinearEquality.h
+-
+

@@ -235,19 +235,6 @@ rosbuild_precompile/fast:
 .PHONY : rosbuild_precompile/fast
 
 #=============================================================================
-# Target rules for targets named test-future
-
-# Build rule for target.
-test-future: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test-future
-.PHONY : test-future
-
-# fast build rule for target.
-test-future/fast:
-	$(MAKE) -f CMakeFiles/test-future.dir/build.make CMakeFiles/test-future.dir/build
-.PHONY : test-future/fast
-
-#=============================================================================
 # Target rules for targets named shared_library
 
 # Build rule for target.
@@ -467,6 +454,32 @@ slam: cmake_check_build_system
 slam/fast:
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/build
 .PHONY : slam/fast
+
+#=============================================================================
+# Target rules for targets named test-future
+
+# Build rule for target.
+test-future: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test-future
+.PHONY : test-future
+
+# fast build rule for target.
+test-future/fast:
+	$(MAKE) -f CMakeFiles/test-future.dir/build.make CMakeFiles/test-future.dir/build
+.PHONY : test-future/fast
+
+#=============================================================================
+# Target rules for targets named localize_offline
+
+# Build rule for target.
+localize_offline: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 localize_offline
+.PHONY : localize_offline
+
+# fast build rule for target.
+localize_offline/fast:
+	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/build
+.PHONY : localize_offline/fast
 
 #=============================================================================
 # Target rules for targets named navigation
@@ -748,6 +761,33 @@ src/slam/landmark_slam.cc.s:
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/src/slam/landmark_slam.cc.s
 .PHONY : src/slam/landmark_slam.cc.s
 
+src/slam/localize_offline.o: src/slam/localize_offline.cc.o
+
+.PHONY : src/slam/localize_offline.o
+
+# target to build an object file
+src/slam/localize_offline.cc.o:
+	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/src/slam/localize_offline.cc.o
+.PHONY : src/slam/localize_offline.cc.o
+
+src/slam/localize_offline.i: src/slam/localize_offline.cc.i
+
+.PHONY : src/slam/localize_offline.i
+
+# target to preprocess a source file
+src/slam/localize_offline.cc.i:
+	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/src/slam/localize_offline.cc.i
+.PHONY : src/slam/localize_offline.cc.i
+
+src/slam/localize_offline.s: src/slam/localize_offline.cc.s
+
+.PHONY : src/slam/localize_offline.s
+
+# target to generate assembly for a file
+src/slam/localize_offline.cc.s:
+	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/src/slam/localize_offline.cc.s
+.PHONY : src/slam/localize_offline.cc.s
+
 src/vector_map/vector_map.o: src/vector_map/vector_map.cc.o
 
 .PHONY : src/vector_map/vector_map.o
@@ -810,14 +850,13 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... run_tests"
 	@echo "... rospack_gensrv"
-	@echo "... list_install_components"
 	@echo "... download_extra_data"
 	@echo "... doxygen"
 	@echo "... rospack_genmsg_libexe"
 	@echo "... rosbuild_precompile"
-	@echo "... test-future"
 	@echo "... shared_library"
 	@echo "... install/local"
 	@echo "... rosbuild_clean-test-results"
@@ -838,6 +877,8 @@ help:
 	@echo "... particle_filter"
 	@echo "... test"
 	@echo "... slam"
+	@echo "... test-future"
+	@echo "... localize_offline"
 	@echo "... navigation"
 	@echo "... eigen_tutorial"
 	@echo "... gmock_main"
@@ -866,6 +907,9 @@ help:
 	@echo "... src/slam/landmark_slam.o"
 	@echo "... src/slam/landmark_slam.i"
 	@echo "... src/slam/landmark_slam.s"
+	@echo "... src/slam/localize_offline.o"
+	@echo "... src/slam/localize_offline.i"
+	@echo "... src/slam/localize_offline.s"
 	@echo "... src/vector_map/vector_map.o"
 	@echo "... src/vector_map/vector_map.i"
 	@echo "... src/vector_map/vector_map.s"

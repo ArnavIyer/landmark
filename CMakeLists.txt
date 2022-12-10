@@ -47,6 +47,10 @@ ROSBUILD_ADD_EXECUTABLE(slam
                         src/slam/landmark_slam.cc)
 TARGET_LINK_LIBRARIES(slam shared_library gtsam tbb ${libs})
 
+ROSBUILD_ADD_EXECUTABLE(localize_offline
+                        src/slam/localize_offline.cc)
+TARGET_LINK_LIBRARIES(localize_offline shared_library gtsam tbb ${libs})
+
 ROSBUILD_ADD_EXECUTABLE(navigation
                         src/navigation/navigation_main.cc
                         src/navigation/navigation.cc)
