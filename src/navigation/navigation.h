@@ -119,6 +119,7 @@ class Navigation {
 
   int pose_ctr_;
   int landmark_ctr_;
+  std::vector<Eigen::Vector2f> all_circles_;
 
   // Map of the environment.
   vector_map::VectorMap map_;

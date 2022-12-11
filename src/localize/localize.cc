@@ -1,0 +1,1 @@
+// kind of like navigation but you have a list of landmarks, and you don't create more.

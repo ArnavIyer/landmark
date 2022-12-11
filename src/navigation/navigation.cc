@@ -182,6 +182,7 @@ void Navigation::ExtractLandmarks(const vector<Vector2f>& cloud) {
     double radius = sqrt(xc*xc + yc*yc + (xx+yy)/circle.size());
     // vector<double> circ = {xc+avg.x(), yc+avg.y(), radius};
     circles_.push_back(Circle(xc+avg.x(), yc+avg.y(), radius));
+    all_circles_.push_back(Vector2f(xc+avg.x(), yc+avg.y()));
   }
   if (PRINT_DEBUG)
     cout << "circles_.size(): " << circles_.size() << endl;
@@ -244,9 +245,10 @@ void Navigation::Run() {
   //   visualization::DrawArc(circle.center, circle.radius, 0, 6.28, 0x555555, global_viz_msg_);
   // }
 
-  for (auto circle : landmarks_) {
-    visualization::DrawArc(circle.center, circle.radius, 0, 6.28, 0x550055, global_viz_msg_);
+  for (auto circle : all_circles_) {
+    visualization::DrawArc(circle, 0.11, 0, 6.28, 0x550055, global_viz_msg_);
   }
+
   visualization::DrawArc(robot_loc_, 0.1, 0, 6.28, 0x00FFFF, global_viz_msg_);
   for (auto pose : robot_poses_) {
     visualization::DrawArc(pose, 0.1, 0, 6.28, 0x555555, global_viz_msg_);
