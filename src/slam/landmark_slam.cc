@@ -37,8 +37,7 @@ int main() {
     graph.add(PriorFactor<Pose2>(xs[0], priorMean, priorNoise));
 
     // Add two odometry factors
-    noiseModel::Diagonal::shared_ptr odometryNoise =
-    noiseModel::Diagonal::Sigmas(Vector3(0.2, 0.2, 0.1));
+    noiseModel::Diagonal::shared_ptr odometryNoise(noiseModel::Diagonal::Sigmas(Vector3(0.2, 0.2, 0.1)));
     for (size_t i = 0; i < odometries.size(); i++) {
         graph.add(gtsam::BetweenFactor<Pose2>(xs[i], xs[i+1], Pose2(odometries[i][0], odometries[i][1], odometries[i][2]), odometryNoise));
     }
@@ -63,7 +62,7 @@ int main() {
     for (size_t i = 0; i < landmarks.size(); i++) {
         int pos_idx = round(landmarks[i][0]);
         int ld_idx = round(landmarks[i][1]);
-        cout << "l" << ld_idx + 1 << " x" << pos_idx + 1 << endl;
+        // cout << "l" << ld_idx + 1 << " x" << pos_idx + 1 << endl;
         if (visited.count(ld_idx))
             continue;
         visited.insert(ld_idx);
@@ -71,7 +70,7 @@ int main() {
         float r = landmarks[i][3];
         float theta = landmarks[i][2];
         initial_estimates.insert(ls[ld_idx], initial_pos_estimates[pos_idx] * Point2(r*cos(theta), r*sin(theta)));
-        cout << "l" << ld_idx + 1 << " x" << pos_idx + 1 << endl;
+        // cout << "l" << ld_idx + 1 << " x" << pos_idx + 1 << endl;
     }
 
     // cout << "after" << endl;
@@ -82,6 +81,4 @@ int main() {
 
     LevenbergMarquardtOptimizer optimzer(graph, initial_estimates);
     Values result = optimzer.optimize();
-    result.print("\nFinal result\n");
-
 }

@@ -90,6 +90,17 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -112,17 +123,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -456,6 +456,19 @@ slam/fast:
 .PHONY : slam/fast
 
 #=============================================================================
+# Target rules for targets named localize
+
+# Build rule for target.
+localize: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 localize
+.PHONY : localize
+
+# fast build rule for target.
+localize/fast:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/build
+.PHONY : localize/fast
+
+#=============================================================================
 # Target rules for targets named test-future
 
 # Build rule for target.
@@ -598,6 +611,60 @@ src/eigen_tutorial.s: src/eigen_tutorial.cc.s
 src/eigen_tutorial.cc.s:
 	$(MAKE) -f CMakeFiles/eigen_tutorial.dir/build.make CMakeFiles/eigen_tutorial.dir/src/eigen_tutorial.cc.s
 .PHONY : src/eigen_tutorial.cc.s
+
+src/localize/localize.o: src/localize/localize.cc.o
+
+.PHONY : src/localize/localize.o
+
+# target to build an object file
+src/localize/localize.cc.o:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize.cc.o
+.PHONY : src/localize/localize.cc.o
+
+src/localize/localize.i: src/localize/localize.cc.i
+
+.PHONY : src/localize/localize.i
+
+# target to preprocess a source file
+src/localize/localize.cc.i:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize.cc.i
+.PHONY : src/localize/localize.cc.i
+
+src/localize/localize.s: src/localize/localize.cc.s
+
+.PHONY : src/localize/localize.s
+
+# target to generate assembly for a file
+src/localize/localize.cc.s:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize.cc.s
+.PHONY : src/localize/localize.cc.s
+
+src/localize/localize_main.o: src/localize/localize_main.cc.o
+
+.PHONY : src/localize/localize_main.o
+
+# target to build an object file
+src/localize/localize_main.cc.o:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize_main.cc.o
+.PHONY : src/localize/localize_main.cc.o
+
+src/localize/localize_main.i: src/localize/localize_main.cc.i
+
+.PHONY : src/localize/localize_main.i
+
+# target to preprocess a source file
+src/localize/localize_main.cc.i:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize_main.cc.i
+.PHONY : src/localize/localize_main.cc.i
+
+src/localize/localize_main.s: src/localize/localize_main.cc.s
+
+.PHONY : src/localize/localize_main.s
+
+# target to generate assembly for a file
+src/localize/localize_main.cc.s:
+	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize_main.cc.s
+.PHONY : src/localize/localize_main.cc.s
 
 src/navigation/navigation.o: src/navigation/navigation.cc.o
 
@@ -851,6 +918,7 @@ help:
 	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
 	@echo "... run_tests"
 	@echo "... rospack_gensrv"
 	@echo "... download_extra_data"
@@ -861,7 +929,6 @@ help:
 	@echo "... install/local"
 	@echo "... rosbuild_clean-test-results"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
 	@echo "... rospack_genmsg"
 	@echo "... test-results"
 	@echo "... test-results-run"
@@ -877,6 +944,7 @@ help:
 	@echo "... particle_filter"
 	@echo "... test"
 	@echo "... slam"
+	@echo "... localize"
 	@echo "... test-future"
 	@echo "... localize_offline"
 	@echo "... navigation"
@@ -889,6 +957,12 @@ help:
 	@echo "... src/eigen_tutorial.o"
 	@echo "... src/eigen_tutorial.i"
 	@echo "... src/eigen_tutorial.s"
+	@echo "... src/localize/localize.o"
+	@echo "... src/localize/localize.i"
+	@echo "... src/localize/localize.s"
+	@echo "... src/localize/localize_main.o"
+	@echo "... src/localize/localize_main.i"
+	@echo "... src/localize/localize_main.s"
 	@echo "... src/navigation/navigation.o"
 	@echo "... src/navigation/navigation.i"
 	@echo "... src/navigation/navigation.s"

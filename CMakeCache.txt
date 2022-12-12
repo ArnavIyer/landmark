@@ -384,7 +384,7 @@ UBUNTU_FOCAL:BOOL=TRUE
 USERCONFIG:FILEPATH=USERCONFIG-NOTFOUND
 
 //Path to a file.
-_file_name:FILEPATH=/home/arnav/landmark/src/navigation/navigation.cc
+_file_name:FILEPATH=/home/arnav/landmark/src/localize/localize.cc
 
 //Path to a file.
 _gmock_INCLUDES:FILEPATH=/usr/src/googletest/googlemock/include/gmock/gmock.h
