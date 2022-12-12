@@ -80,7 +80,7 @@ Localize::Localize(const string& map_name, ros::NodeHandle* n) :
     imu_initialized_(false),
     imu_initial_pitch_(0),
     robot_loc_(0, 0),
-    robot_pitch_(1),
+    robot_pitch_(0),
     robot_angle_(0),
     prev_robot_loc_(0, 0),
     prev_robot_angle_(0),
@@ -176,9 +176,10 @@ void Localize::UpdatePointCloud(const std::vector<float>& ranges,
                     float range_min,
                     float range_max,
                     float angle_min,
-                    float angle_max) {
+                    float angle_max,
+                    float angle_increment) {
   
-  const Vector3f laser_pos(0.305, 0, 0.38);
+  const Eigen::Vector3f laser_pos(0.305, 0, 0.38);
 
   const int num_rays = static_cast<int>(
       1.0 + (angle_max - angle_min) /
@@ -189,16 +190,18 @@ void Localize::UpdatePointCloud(const std::vector<float>& ranges,
   // Convert the LaserScan to a point cloud
   float range;
   float angle;
-  Vector3f base_link_loc;
+  Eigen::Vector3f base_link_loc;
   for (int i = 0; i < num_rays; i++) {
-    range = msg.ranges[i];
-    if (range >= msg.range_min && range <= msg.range_max) {
-      angle = msg.angle_min + i * msg.angle_increment;
-      base_link_loc = AngleAxisf(robot_pitch_, Vector3f::UnitY()) * Vector3f(range * cos(angle), 0, range * sin(angle)) + laser_pos;
+    range = ranges[i];
+    if (range >= range_min && range <= range_max) {
+      angle = angle_min + i * angle_increment;
+      base_link_loc = Eigen::AngleAxisf(robot_pitch_, Eigen::Vector3f::UnitY()) * Eigen::Vector3f(range * cos(angle), 0, range * sin(angle)) + laser_pos;
       if (base_link_loc.x() < 4 && base_link_loc.y() < 2.5)
         point_cloud_.push_back(Vector2f(base_link_loc.x(), base_link_loc.y()));
     }
   }
+  cout << point_cloud_.size() << endl;
+  ExtractLandmarks();
 }
 
 void Localize::ExtractLandmarks2(const vector<Vector2f>& cloud) {
@@ -210,7 +213,7 @@ void Localize::ExtractLandmarks2(const vector<Vector2f>& cloud) {
 }
 
 // TODO: change to find closest point on circle and add radius of cylinder to get center
-void Localize::ExtractLandmarks(const vector<Vector2f>& cloud) {
+void Localize::ExtractLandmarks() {
   double epsilon = 0.05;
   circles_.clear();
   for (size_t i = 1; i < point_cloud_.size(); i++) {
@@ -219,12 +222,11 @@ void Localize::ExtractLandmarks(const vector<Vector2f>& cloud) {
     Vector2f avg(0,0);
     while (i < point_cloud_.size() && (point_cloud_[i] - point_cloud_[i-1]).norm() < epsilon) {
       circle.push_back(point_cloud_[i]);
-      avg += cloud[i];
+      avg += point_cloud_[i];
       i++;
     }
     avg /= circle.size();
-
-    if (circle.size() < 15) {
+    if (circle.size() < 10 || circle.size() > 50) {
       continue;
     }
 
@@ -264,14 +266,14 @@ void Localize::ExtractLandmarks(const vector<Vector2f>& cloud) {
     circles_.push_back(Circle(xc+avg.x(), yc+avg.y(), radius));
     // circles_.push_back(Circle(xc+avg.x(), yc+avg.y(), radius));
   }
-  if (PRINT_DEBUG)
+  // if (PRINT_DEBUG)
     cout << "circles_.size(): " << circles_.size() << endl;
 }
 
 void Localize::ObservePointCloud(const vector<Vector2f>& cloud,
                                    double time) {
   point_cloud_ = cloud;
-  Localize::ExtractLandmarks(cloud);
+  Localize::ExtractLandmarks();
 }
 
 void Localize::MatchLandmarks() {
@@ -332,7 +334,7 @@ void Localize::OptimizeEstimates() {
 void Localize::UpdateVisualization() {
   // draw landmarks
   for (auto ld : landmarks_) {
-    visualization::DrawCross(Vector2f(ld[0], ld[1]), 1, 0x0d8000, global_viz_msg_);
+    visualization::DrawCross(Vector2f(ld[0], ld[1]), 0.08, 0x0d8000, global_viz_msg_);
   }
 
   // draw robot poses
@@ -364,6 +366,7 @@ void Localize::Run() {
 
   // add a new pose to the factor graph every time the robot moves x distance
   if ((prev_robot_loc_ - robot_loc_).norm() > 0.1) {
+    cout << "added pose" << endl;
     AddNewPose();
   }
 

@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/arnav/landmark
 
 # The main recursive "all" target.
 all: CMakeFiles/shared_library.dir/all
+all: CMakeFiles/pitch_test.dir/all
 all: CMakeFiles/simple_queue_test.dir/all
 all: CMakeFiles/particle_filter.dir/all
 all: CMakeFiles/slam.dir/all
@@ -78,13 +79,14 @@ clean: CMakeFiles/rospack_gensrv.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: CMakeFiles/doxygen.dir/clean
 clean: CMakeFiles/rospack_genmsg_libexe.dir/clean
-clean: CMakeFiles/rosbuild_precompile.dir/clean
 clean: CMakeFiles/shared_library.dir/clean
 clean: CMakeFiles/rosbuild_clean-test-results.dir/clean
 clean: CMakeFiles/rospack_genmsg.dir/clean
 clean: CMakeFiles/test-results.dir/clean
 clean: CMakeFiles/test-results-run.dir/clean
 clean: CMakeFiles/tests.dir/clean
+clean: CMakeFiles/rosbuild_precompile.dir/clean
+clean: CMakeFiles/pitch_test.dir/clean
 clean: CMakeFiles/_catkin_empty_exported_target.dir/clean
 clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/simple_queue_test.dir/clean
@@ -318,40 +320,13 @@ CMakeFiles/rospack_genmsg_libexe.dir/clean:
 .PHONY : CMakeFiles/rospack_genmsg_libexe.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/rosbuild_precompile.dir
-
-# All Build rule for target.
-CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg_libexe.dir/all
-	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/depend
-	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num= "Built target rosbuild_precompile"
-.PHONY : CMakeFiles/rosbuild_precompile.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/rosbuild_precompile.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosbuild_precompile.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
-.PHONY : CMakeFiles/rosbuild_precompile.dir/rule
-
-# Convenience name for target.
-rosbuild_precompile: CMakeFiles/rosbuild_precompile.dir/rule
-
-.PHONY : rosbuild_precompile
-
-# clean rule for target.
-CMakeFiles/rosbuild_precompile.dir/clean:
-	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/clean
-.PHONY : CMakeFiles/rosbuild_precompile.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/shared_library.dir
 
 # All Build rule for target.
 CMakeFiles/shared_library.dir/all:
 	$(MAKE) -f CMakeFiles/shared_library.dir/build.make CMakeFiles/shared_library.dir/depend
 	$(MAKE) -f CMakeFiles/shared_library.dir/build.make CMakeFiles/shared_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=29,30,31 "Built target shared_library"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=32,33,34 "Built target shared_library"
 .PHONY : CMakeFiles/shared_library.dir/all
 
 # Build rule for subdir invocation for target.
@@ -508,6 +483,62 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/rosbuild_precompile.dir
+
+# All Build rule for target.
+CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg_libexe.dir/all
+	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/depend
+	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num= "Built target rosbuild_precompile"
+.PHONY : CMakeFiles/rosbuild_precompile.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/rosbuild_precompile.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosbuild_precompile.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
+.PHONY : CMakeFiles/rosbuild_precompile.dir/rule
+
+# Convenience name for target.
+rosbuild_precompile: CMakeFiles/rosbuild_precompile.dir/rule
+
+.PHONY : rosbuild_precompile
+
+# clean rule for target.
+CMakeFiles/rosbuild_precompile.dir/clean:
+	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/clean
+.PHONY : CMakeFiles/rosbuild_precompile.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/pitch_test.dir
+
+# All Build rule for target.
+CMakeFiles/pitch_test.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/pitch_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+CMakeFiles/pitch_test.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/depend
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=29,30,31 "Built target pitch_test"
+.PHONY : CMakeFiles/pitch_test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pitch_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 13
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pitch_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
+.PHONY : CMakeFiles/pitch_test.dir/rule
+
+# Convenience name for target.
+pitch_test: CMakeFiles/pitch_test.dir/rule
+
+.PHONY : pitch_test
+
+# clean rule for target.
+CMakeFiles/pitch_test.dir/clean:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/clean
+.PHONY : CMakeFiles/pitch_test.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/_catkin_empty_exported_target.dir
 
 # All Build rule for target.
@@ -568,7 +599,7 @@ CMakeFiles/clean_test_results.dir/clean:
 CMakeFiles/simple_queue_test.dir/all:
 	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/depend
 	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=32,33 "Built target simple_queue_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=35,36 "Built target simple_queue_test"
 .PHONY : CMakeFiles/simple_queue_test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -727,8 +758,8 @@ CMakeFiles/ROSBUILD_gensrv_cpp.dir/clean:
 # Target rules for target CMakeFiles/particle_filter.dir
 
 # All Build rule for target.
-CMakeFiles/particle_filter.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/particle_filter.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/particle_filter.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/particle_filter.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/particle_filter.dir/build.make CMakeFiles/particle_filter.dir/depend
 	$(MAKE) -f CMakeFiles/particle_filter.dir/build.make CMakeFiles/particle_filter.dir/build
@@ -783,12 +814,12 @@ CMakeFiles/test.dir/clean:
 # Target rules for target CMakeFiles/slam.dir
 
 # All Build rule for target.
-CMakeFiles/slam.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/slam.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/slam.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/slam.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/depend
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=34,35 "Built target slam"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=37,38 "Built target slam"
 .PHONY : CMakeFiles/slam.dir/all
 
 # Build rule for subdir invocation for target.
@@ -812,8 +843,8 @@ CMakeFiles/slam.dir/clean:
 # Target rules for target CMakeFiles/localize.dir
 
 # All Build rule for target.
-CMakeFiles/localize.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/localize.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/localize.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/localize.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/depend
 	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/build
@@ -868,8 +899,8 @@ CMakeFiles/test-future.dir/clean:
 # Target rules for target CMakeFiles/localize_offline.dir
 
 # All Build rule for target.
-CMakeFiles/localize_offline.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/localize_offline.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/localize_offline.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/localize_offline.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/depend
 	$(MAKE) -f CMakeFiles/localize_offline.dir/build.make CMakeFiles/localize_offline.dir/build
@@ -897,8 +928,8 @@ CMakeFiles/localize_offline.dir/clean:
 # Target rules for target CMakeFiles/navigation.dir
 
 # All Build rule for target.
-CMakeFiles/navigation.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/navigation.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/navigation.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/navigation.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/depend
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/build

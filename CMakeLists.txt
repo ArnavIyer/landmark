@@ -61,6 +61,11 @@ ROSBUILD_ADD_EXECUTABLE(localize
                         src/localize/localize.cc)
 TARGET_LINK_LIBRARIES(localize shared_library gtsam tbb ${libs})
 
+ROSBUILD_ADD_EXECUTABLE(pitch_test
+                        src/pitch_test/pitch_test_main.cc
+                        src/pitch_test/pitch_test.cc)
+TARGET_LINK_LIBRARIES(pitch_test shared_library gtsam tbb ${libs})
+
 ADD_EXECUTABLE(eigen_tutorial
                src/eigen_tutorial.cc)
 

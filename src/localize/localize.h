@@ -76,7 +76,7 @@ class Localize {
                       const Eigen::Vector2f& vel,
                       float ang_vel);
 
-  // Updates based on an observed laser scan
+  // // Updates based on an observed laser scan
   void ObservePointCloud(const std::vector<Eigen::Vector2f>& cloud,
                          double time);
 
@@ -84,7 +84,7 @@ class Localize {
   void Run();
   // Used to set the next target pose.
   void SetNavGoal(const Eigen::Vector2f& loc, float angle);
-  void ExtractLandmarks(const std::vector<Eigen::Vector2f>& cloud);
+  void ExtractLandmarks();
   void ExtractLandmarks2(const std::vector<Eigen::Vector2f>& cloud);
   void MatchLandmarks();
   void OptimizeEstimates();
@@ -94,7 +94,8 @@ class Localize {
                     float range_min,
                     float range_max,
                     float angle_min,
-                    float angle_max);
+                    float angle_max,
+                    float angle_increment);
   void AddNewPose();
 
  private:

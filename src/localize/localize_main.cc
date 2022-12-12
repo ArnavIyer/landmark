@@ -98,7 +98,7 @@ void IMUCallback(const sensor_msgs::Imu& msg) {
 //            GetWallTime() - msg.header.stamp.toSec());
 //   }
 //   // Location of the laser on the robot. Assumes the laser is forward-facing.
-//   const Vector2f kLaserLoc(0.2, 0);
+//   const Vector2f kLaserLoc(0.305,0);
 
 //   const int num_rays = static_cast<int>(
 //       1.0 + (msg.angle_max - msg.angle_min) /
@@ -119,8 +119,8 @@ void IMUCallback(const sensor_msgs::Imu& msg) {
 //     if (range >= msg.range_min && range <= msg.range_max) {
 //       angle = msg.angle_min + i * msg.angle_increment;
 //       laser_loc = Vector2f(range * cos(angle), range * sin(angle)) + kLaserLoc;
-//       if ((laser_loc - kLaserLoc).x() < 4 && (laser_loc - kLaserLoc).y() < 2.5)
-//         point_cloud_.push_back(laser_loc);
+//       // if ((laser_loc - kLaserLoc).x() < 4 && (laser_loc - kLaserLoc).y() < 2.5)
+//       point_cloud_.push_back(laser_loc);
 //     }
 //   }
 //   localize_->ObservePointCloud(point_cloud_, msg.header.stamp.toSec());
@@ -140,7 +140,8 @@ void LaserCallback(const sensor_msgs::LaserScan& msg) {
         msg.range_min,
         msg.range_max,
         msg.angle_min,
-        msg.angle_max);
+        msg.angle_max,
+        msg.angle_increment);
 }
 
 

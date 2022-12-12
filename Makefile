@@ -101,6 +101,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -112,17 +123,6 @@ install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -222,19 +222,6 @@ rospack_genmsg_libexe/fast:
 .PHONY : rospack_genmsg_libexe/fast
 
 #=============================================================================
-# Target rules for targets named rosbuild_precompile
-
-# Build rule for target.
-rosbuild_precompile: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rosbuild_precompile
-.PHONY : rosbuild_precompile
-
-# fast build rule for target.
-rosbuild_precompile/fast:
-	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
-.PHONY : rosbuild_precompile/fast
-
-#=============================================================================
 # Target rules for targets named shared_library
 
 # Build rule for target.
@@ -311,6 +298,32 @@ tests: cmake_check_build_system
 tests/fast:
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
+
+#=============================================================================
+# Target rules for targets named rosbuild_precompile
+
+# Build rule for target.
+rosbuild_precompile: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rosbuild_precompile
+.PHONY : rosbuild_precompile
+
+# fast build rule for target.
+rosbuild_precompile/fast:
+	$(MAKE) -f CMakeFiles/rosbuild_precompile.dir/build.make CMakeFiles/rosbuild_precompile.dir/build
+.PHONY : rosbuild_precompile/fast
+
+#=============================================================================
+# Target rules for targets named pitch_test
+
+# Build rule for target.
+pitch_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pitch_test
+.PHONY : pitch_test
+
+# fast build rule for target.
+pitch_test/fast:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/build
+.PHONY : pitch_test/fast
 
 #=============================================================================
 # Target rules for targets named _catkin_empty_exported_target
@@ -801,6 +814,60 @@ src/particle_filter/particle_filter_main.cc.s:
 	$(MAKE) -f CMakeFiles/particle_filter.dir/build.make CMakeFiles/particle_filter.dir/src/particle_filter/particle_filter_main.cc.s
 .PHONY : src/particle_filter/particle_filter_main.cc.s
 
+src/pitch_test/pitch_test.o: src/pitch_test/pitch_test.cc.o
+
+.PHONY : src/pitch_test/pitch_test.o
+
+# target to build an object file
+src/pitch_test/pitch_test.cc.o:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test.cc.o
+.PHONY : src/pitch_test/pitch_test.cc.o
+
+src/pitch_test/pitch_test.i: src/pitch_test/pitch_test.cc.i
+
+.PHONY : src/pitch_test/pitch_test.i
+
+# target to preprocess a source file
+src/pitch_test/pitch_test.cc.i:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test.cc.i
+.PHONY : src/pitch_test/pitch_test.cc.i
+
+src/pitch_test/pitch_test.s: src/pitch_test/pitch_test.cc.s
+
+.PHONY : src/pitch_test/pitch_test.s
+
+# target to generate assembly for a file
+src/pitch_test/pitch_test.cc.s:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test.cc.s
+.PHONY : src/pitch_test/pitch_test.cc.s
+
+src/pitch_test/pitch_test_main.o: src/pitch_test/pitch_test_main.cc.o
+
+.PHONY : src/pitch_test/pitch_test_main.o
+
+# target to build an object file
+src/pitch_test/pitch_test_main.cc.o:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test_main.cc.o
+.PHONY : src/pitch_test/pitch_test_main.cc.o
+
+src/pitch_test/pitch_test_main.i: src/pitch_test/pitch_test_main.cc.i
+
+.PHONY : src/pitch_test/pitch_test_main.i
+
+# target to preprocess a source file
+src/pitch_test/pitch_test_main.cc.i:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test_main.cc.i
+.PHONY : src/pitch_test/pitch_test_main.cc.i
+
+src/pitch_test/pitch_test_main.s: src/pitch_test/pitch_test_main.cc.s
+
+.PHONY : src/pitch_test/pitch_test_main.s
+
+# target to generate assembly for a file
+src/pitch_test/pitch_test_main.cc.s:
+	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/src/pitch_test/pitch_test_main.cc.s
+.PHONY : src/pitch_test/pitch_test_main.cc.s
+
 src/slam/landmark_slam.o: src/slam/landmark_slam.cc.o
 
 .PHONY : src/slam/landmark_slam.o
@@ -919,20 +986,21 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... edit_cache"
 	@echo "... run_tests"
 	@echo "... rospack_gensrv"
 	@echo "... download_extra_data"
 	@echo "... doxygen"
 	@echo "... rospack_genmsg_libexe"
-	@echo "... rosbuild_precompile"
 	@echo "... shared_library"
 	@echo "... install/local"
 	@echo "... rosbuild_clean-test-results"
-	@echo "... edit_cache"
 	@echo "... rospack_genmsg"
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
+	@echo "... rosbuild_precompile"
+	@echo "... pitch_test"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... clean_test_results"
 	@echo "... simple_queue_test"
@@ -978,6 +1046,12 @@ help:
 	@echo "... src/particle_filter/particle_filter_main.o"
 	@echo "... src/particle_filter/particle_filter_main.i"
 	@echo "... src/particle_filter/particle_filter_main.s"
+	@echo "... src/pitch_test/pitch_test.o"
+	@echo "... src/pitch_test/pitch_test.i"
+	@echo "... src/pitch_test/pitch_test.s"
+	@echo "... src/pitch_test/pitch_test_main.o"
+	@echo "... src/pitch_test/pitch_test_main.i"
+	@echo "... src/pitch_test/pitch_test_main.s"
 	@echo "... src/slam/landmark_slam.o"
 	@echo "... src/slam/landmark_slam.i"
 	@echo "... src/slam/landmark_slam.s"
