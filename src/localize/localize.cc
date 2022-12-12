@@ -179,7 +179,7 @@ void Localize::UpdatePointCloud(const std::vector<float>& ranges,
                     float angle_max,
                     float angle_increment) {
   
-  const Eigen::Vector3f laser_pos(0.305, 0, 0.38);
+  const Eigen::Vector3f laser_pos(0.2, 0, 0.38);
 
   const int num_rays = static_cast<int>(
       1.0 + (angle_max - angle_min) /
@@ -195,12 +195,12 @@ void Localize::UpdatePointCloud(const std::vector<float>& ranges,
     range = ranges[i];
     if (range >= range_min && range <= range_max) {
       angle = angle_min + i * angle_increment;
-      base_link_loc = Eigen::AngleAxisf(robot_pitch_, Eigen::Vector3f::UnitY()) * Eigen::Vector3f(range * cos(angle), 0, range * sin(angle)) + laser_pos;
-      if (base_link_loc.x() < 4 && base_link_loc.y() < 2.5)
+      base_link_loc = Eigen::AngleAxisf(robot_pitch_, Eigen::Vector3f::UnitY()) * Eigen::Vector3f(range * cos(angle), range * sin(angle), 0) + laser_pos;
+      if (abs(base_link_loc.x()) < 4 && abs(base_link_loc.y()) < 2.5)
         point_cloud_.push_back(Vector2f(base_link_loc.x(), base_link_loc.y()));
     }
   }
-  cout << point_cloud_.size() << endl;
+
   ExtractLandmarks();
 }
 
@@ -220,13 +220,18 @@ void Localize::ExtractLandmarks() {
 
     vector<Vector2f> circle;
     Vector2f avg(0,0);
+    float max_diff = 0;
     while (i < point_cloud_.size() && (point_cloud_[i] - point_cloud_[i-1]).norm() < epsilon) {
       circle.push_back(point_cloud_[i]);
       avg += point_cloud_[i];
+      max_diff = max(max_diff, (avg - point_cloud_[i]).norm());
       i++;
     }
     avg /= circle.size();
-    if (circle.size() < 10 || circle.size() > 50) {
+    // if (circle.size() < 10 || circle.size() > 50 || max_diff > 0.2) {
+    //   continue;
+    // }
+    if (circle.size() < 12) {
       continue;
     }
 
@@ -262,12 +267,10 @@ void Localize::ExtractLandmarks() {
     double yc = (a1*c2 - c1*a2)/determinant;
     // Vector2f center(xc+avg.x(), yc+avg.y());
     double radius = sqrt(xc*xc + yc*yc + (xx+yy)/circle.size());
-    // vector<double> circ = {xc+avg.x(), yc+avg.y(), radius};
     circles_.push_back(Circle(xc+avg.x(), yc+avg.y(), radius));
-    // circles_.push_back(Circle(xc+avg.x(), yc+avg.y(), radius));
   }
-  // if (PRINT_DEBUG)
-    cout << "circles_.size(): " << circles_.size() << endl;
+  // // if (PRINT_DEBUG)
+  //   cout << "circles_.size(): " << circles_.size() << endl;
 }
 
 void Localize::ObservePointCloud(const vector<Vector2f>& cloud,
@@ -278,7 +281,7 @@ void Localize::ObservePointCloud(const vector<Vector2f>& cloud,
 
 void Localize::MatchLandmarks() {
   // loop through list of circles, match them to one of 4 landmarks in landmarks_;
-
+  // cout << "circles_.size(): " << circles_.size() << endl;
   for (size_t i = 0; i < circles_.size(); i++) {
     Eigen::Rotation2Df rot(robot_angle_);
     Vector2f circle = robot_loc_ + rot*circles_[i].center;
@@ -332,6 +335,12 @@ void Localize::OptimizeEstimates() {
 }
 
 void Localize::UpdateVisualization() {
+
+  // draw point cloud
+  for (auto pt : point_cloud_) {
+    visualization::DrawPoint(pt, 0x000000, local_viz_msg_);
+  }
+
   // draw landmarks
   for (auto ld : landmarks_) {
     visualization::DrawCross(Vector2f(ld[0], ld[1]), 0.08, 0x0d8000, global_viz_msg_);
@@ -366,7 +375,6 @@ void Localize::Run() {
 
   // add a new pose to the factor graph every time the robot moves x distance
   if ((prev_robot_loc_ - robot_loc_).norm() > 0.1) {
-    cout << "added pose" << endl;
     AddNewPose();
   }
 
