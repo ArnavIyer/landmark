@@ -157,6 +157,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named simple_queue_test
+
+# Build rule for target.
+simple_queue_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simple_queue_test
+.PHONY : simple_queue_test
+
+# fast build rule for target.
+simple_queue_test/fast:
+	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/build
+.PHONY : simple_queue_test/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -352,19 +365,6 @@ clean_test_results/fast:
 .PHONY : clean_test_results/fast
 
 #=============================================================================
-# Target rules for targets named simple_queue_test
-
-# Build rule for target.
-simple_queue_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 simple_queue_test
-.PHONY : simple_queue_test
-
-# fast build rule for target.
-simple_queue_test/fast:
-	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/build
-.PHONY : simple_queue_test/fast
-
-#=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_lisp
 
 # Build rule for target.
@@ -519,6 +519,19 @@ navigation: cmake_check_build_system
 navigation/fast:
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/build
 .PHONY : navigation/fast
+
+#=============================================================================
+# Target rules for targets named mapping
+
+# Build rule for target.
+mapping: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mapping
+.PHONY : mapping
+
+# fast build rule for target.
+mapping/fast:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/build
+.PHONY : mapping/fast
 
 #=============================================================================
 # Target rules for targets named eigen_tutorial
@@ -678,6 +691,60 @@ src/localize/localize_main.s: src/localize/localize_main.cc.s
 src/localize/localize_main.cc.s:
 	$(MAKE) -f CMakeFiles/localize.dir/build.make CMakeFiles/localize.dir/src/localize/localize_main.cc.s
 .PHONY : src/localize/localize_main.cc.s
+
+src/mapping/mapping.o: src/mapping/mapping.cc.o
+
+.PHONY : src/mapping/mapping.o
+
+# target to build an object file
+src/mapping/mapping.cc.o:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping.cc.o
+.PHONY : src/mapping/mapping.cc.o
+
+src/mapping/mapping.i: src/mapping/mapping.cc.i
+
+.PHONY : src/mapping/mapping.i
+
+# target to preprocess a source file
+src/mapping/mapping.cc.i:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping.cc.i
+.PHONY : src/mapping/mapping.cc.i
+
+src/mapping/mapping.s: src/mapping/mapping.cc.s
+
+.PHONY : src/mapping/mapping.s
+
+# target to generate assembly for a file
+src/mapping/mapping.cc.s:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping.cc.s
+.PHONY : src/mapping/mapping.cc.s
+
+src/mapping/mapping_main.o: src/mapping/mapping_main.cc.o
+
+.PHONY : src/mapping/mapping_main.o
+
+# target to build an object file
+src/mapping/mapping_main.cc.o:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping_main.cc.o
+.PHONY : src/mapping/mapping_main.cc.o
+
+src/mapping/mapping_main.i: src/mapping/mapping_main.cc.i
+
+.PHONY : src/mapping/mapping_main.i
+
+# target to preprocess a source file
+src/mapping/mapping_main.cc.i:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping_main.cc.i
+.PHONY : src/mapping/mapping_main.cc.i
+
+src/mapping/mapping_main.s: src/mapping/mapping_main.cc.s
+
+.PHONY : src/mapping/mapping_main.s
+
+# target to generate assembly for a file
+src/mapping/mapping_main.cc.s:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/src/mapping/mapping_main.cc.s
+.PHONY : src/mapping/mapping_main.cc.s
 
 src/navigation/navigation.o: src/navigation/navigation.cc.o
 
@@ -987,6 +1054,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... simple_queue_test"
 	@echo "... run_tests"
 	@echo "... rospack_gensrv"
 	@echo "... download_extra_data"
@@ -1003,7 +1071,6 @@ help:
 	@echo "... pitch_test"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... clean_test_results"
-	@echo "... simple_queue_test"
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... rosbuild_premsgsrvgen"
 	@echo "... ROSBUILD_gensrv_lisp"
@@ -1016,6 +1083,7 @@ help:
 	@echo "... test-future"
 	@echo "... localize_offline"
 	@echo "... navigation"
+	@echo "... mapping"
 	@echo "... eigen_tutorial"
 	@echo "... gmock_main"
 	@echo "... gmock"
@@ -1031,6 +1099,12 @@ help:
 	@echo "... src/localize/localize_main.o"
 	@echo "... src/localize/localize_main.i"
 	@echo "... src/localize/localize_main.s"
+	@echo "... src/mapping/mapping.o"
+	@echo "... src/mapping/mapping.i"
+	@echo "... src/mapping/mapping.s"
+	@echo "... src/mapping/mapping_main.o"
+	@echo "... src/mapping/mapping_main.i"
+	@echo "... src/mapping/mapping_main.s"
 	@echo "... src/navigation/navigation.o"
 	@echo "... src/navigation/navigation.i"
 	@echo "... src/navigation/navigation.s"

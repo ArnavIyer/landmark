@@ -53,14 +53,15 @@ CMAKE_BINARY_DIR = /home/arnav/landmark
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/simple_queue_test.dir/all
 all: CMakeFiles/shared_library.dir/all
 all: CMakeFiles/pitch_test.dir/all
-all: CMakeFiles/simple_queue_test.dir/all
 all: CMakeFiles/particle_filter.dir/all
 all: CMakeFiles/slam.dir/all
 all: CMakeFiles/localize.dir/all
 all: CMakeFiles/localize_offline.dir/all
 all: CMakeFiles/navigation.dir/all
+all: CMakeFiles/mapping.dir/all
 all: CMakeFiles/eigen_tutorial.dir/all
 all: gtest/all
 all: src/shared/all
@@ -74,6 +75,7 @@ preinstall: src/shared/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/simple_queue_test.dir/clean
 clean: CMakeFiles/run_tests.dir/clean
 clean: CMakeFiles/rospack_gensrv.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
@@ -89,7 +91,6 @@ clean: CMakeFiles/rosbuild_precompile.dir/clean
 clean: CMakeFiles/pitch_test.dir/clean
 clean: CMakeFiles/_catkin_empty_exported_target.dir/clean
 clean: CMakeFiles/clean_test_results.dir/clean
-clean: CMakeFiles/simple_queue_test.dir/clean
 clean: CMakeFiles/ROSBUILD_genmsg_lisp.dir/clean
 clean: CMakeFiles/rosbuild_premsgsrvgen.dir/clean
 clean: CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean
@@ -102,6 +103,7 @@ clean: CMakeFiles/localize.dir/clean
 clean: CMakeFiles/test-future.dir/clean
 clean: CMakeFiles/localize_offline.dir/clean
 clean: CMakeFiles/navigation.dir/clean
+clean: CMakeFiles/mapping.dir/clean
 clean: CMakeFiles/eigen_tutorial.dir/clean
 clean: gtest/clean
 clean: src/shared/clean
@@ -182,6 +184,33 @@ src/shared/preinstall:
 src/shared/clean: src/shared/CMakeFiles/amrl_shared_lib.dir/clean
 
 .PHONY : src/shared/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/simple_queue_test.dir
+
+# All Build rule for target.
+CMakeFiles/simple_queue_test.dir/all:
+	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/depend
+	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=38,39 "Built target simple_queue_test"
+.PHONY : CMakeFiles/simple_queue_test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/simple_queue_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/simple_queue_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
+.PHONY : CMakeFiles/simple_queue_test.dir/rule
+
+# Convenience name for target.
+simple_queue_test: CMakeFiles/simple_queue_test.dir/rule
+
+.PHONY : simple_queue_test
+
+# clean rule for target.
+CMakeFiles/simple_queue_test.dir/clean:
+	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/clean
+.PHONY : CMakeFiles/simple_queue_test.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/run_tests.dir
@@ -326,7 +355,7 @@ CMakeFiles/rospack_genmsg_libexe.dir/clean:
 CMakeFiles/shared_library.dir/all:
 	$(MAKE) -f CMakeFiles/shared_library.dir/build.make CMakeFiles/shared_library.dir/depend
 	$(MAKE) -f CMakeFiles/shared_library.dir/build.make CMakeFiles/shared_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=32,33,34 "Built target shared_library"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=35,36,37 "Built target shared_library"
 .PHONY : CMakeFiles/shared_library.dir/all
 
 # Build rule for subdir invocation for target.
@@ -518,7 +547,7 @@ CMakeFiles/pitch_test.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/pitch_test.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/depend
 	$(MAKE) -f CMakeFiles/pitch_test.dir/build.make CMakeFiles/pitch_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=29,30,31 "Built target pitch_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=32,33,34 "Built target pitch_test"
 .PHONY : CMakeFiles/pitch_test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -591,33 +620,6 @@ clean_test_results: CMakeFiles/clean_test_results.dir/rule
 CMakeFiles/clean_test_results.dir/clean:
 	$(MAKE) -f CMakeFiles/clean_test_results.dir/build.make CMakeFiles/clean_test_results.dir/clean
 .PHONY : CMakeFiles/clean_test_results.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/simple_queue_test.dir
-
-# All Build rule for target.
-CMakeFiles/simple_queue_test.dir/all:
-	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/depend
-	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=35,36 "Built target simple_queue_test"
-.PHONY : CMakeFiles/simple_queue_test.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/simple_queue_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/simple_queue_test.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
-.PHONY : CMakeFiles/simple_queue_test.dir/rule
-
-# Convenience name for target.
-simple_queue_test: CMakeFiles/simple_queue_test.dir/rule
-
-.PHONY : simple_queue_test
-
-# clean rule for target.
-CMakeFiles/simple_queue_test.dir/clean:
-	$(MAKE) -f CMakeFiles/simple_queue_test.dir/build.make CMakeFiles/simple_queue_test.dir/clean
-.PHONY : CMakeFiles/simple_queue_test.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ROSBUILD_genmsg_lisp.dir
@@ -763,7 +765,7 @@ CMakeFiles/particle_filter.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/particle_filter.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/particle_filter.dir/build.make CMakeFiles/particle_filter.dir/depend
 	$(MAKE) -f CMakeFiles/particle_filter.dir/build.make CMakeFiles/particle_filter.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=26,27,28 "Built target particle_filter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=29,30,31 "Built target particle_filter"
 .PHONY : CMakeFiles/particle_filter.dir/all
 
 # Build rule for subdir invocation for target.
@@ -819,7 +821,7 @@ CMakeFiles/slam.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/slam.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/depend
 	$(MAKE) -f CMakeFiles/slam.dir/build.make CMakeFiles/slam.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=37,38 "Built target slam"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=40,41 "Built target slam"
 .PHONY : CMakeFiles/slam.dir/all
 
 # Build rule for subdir invocation for target.
@@ -933,7 +935,7 @@ CMakeFiles/navigation.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 CMakeFiles/navigation.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/depend
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=23,24,25 "Built target navigation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=26,27,28 "Built target navigation"
 .PHONY : CMakeFiles/navigation.dir/all
 
 # Build rule for subdir invocation for target.
@@ -952,6 +954,35 @@ navigation: CMakeFiles/navigation.dir/rule
 CMakeFiles/navigation.dir/clean:
 	$(MAKE) -f CMakeFiles/navigation.dir/build.make CMakeFiles/navigation.dir/clean
 .PHONY : CMakeFiles/navigation.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/mapping.dir
+
+# All Build rule for target.
+CMakeFiles/mapping.dir/all: CMakeFiles/shared_library.dir/all
+CMakeFiles/mapping.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+CMakeFiles/mapping.dir/all: src/shared/CMakeFiles/amrl_shared_lib.dir/all
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/depend
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arnav/landmark/CMakeFiles --progress-num=23,24,25 "Built target mapping"
+.PHONY : CMakeFiles/mapping.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mapping.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 13
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mapping.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arnav/landmark/CMakeFiles 0
+.PHONY : CMakeFiles/mapping.dir/rule
+
+# Convenience name for target.
+mapping: CMakeFiles/mapping.dir/rule
+
+.PHONY : mapping
+
+# clean rule for target.
+CMakeFiles/mapping.dir/clean:
+	$(MAKE) -f CMakeFiles/mapping.dir/build.make CMakeFiles/mapping.dir/clean
+.PHONY : CMakeFiles/mapping.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/eigen_tutorial.dir
