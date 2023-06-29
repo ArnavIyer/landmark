@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++11 -O2 -g -DNDEBUG  -rdynamic CMakeFiles/simple_queue_test.dir/src/navigation/simple_queue_test.cc.o  -o bin/simple_queue_test   -L/opt/ros/noetic/lib 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
+#include <gtsam/geometry/Pose2.h>
+
 
 #include "eigen3/Eigen/Dense"
 #include "eigen3/Eigen/Geometry"
@@ -70,13 +72,25 @@ void DemoRotations() {
   cout << "m1: \n" << m1 << "\n";
 }
 
-int main() {
-  cout << "Basics: Vectors and Matrices.\n";
-  DemoBasics();
+void PoseComp() {
+     cout << "Pose Composition" << endl;
 
-  cout << "\n\n\nDifferent representations of rotation.\n";
-  DemoRotations();
-  Affine2f a = Eigen::Rotation2Df(0.3 * M_PI) * Eigen::Translation2f(3, 4);
-  cout << "a:\n" << a.matrix() << "\n";
+     gtsam::Pose2 a(4, 3, M_PI);
+     gtsam::Pose2 ref(3, 2, -M_PI);
+
+
+     gtsam::Pose2 result = a * ref;
+     cout << result << endl;
+}
+
+int main() {
+//   cout << "Basics: Vectors and Matrices.\n";
+//   DemoBasics();
+
+//   cout << "\n\n\nDifferent representations of rotation.\n";
+//   DemoRotations();
+//   Affine2f a = Eigen::Rotation2Df(0.3 * M_PI) * Eigen::Translation2f(3, 4);
+//   cout << "a:\n" << a.matrix() << "\n";
+     PoseComp();
   return 0;
 }
