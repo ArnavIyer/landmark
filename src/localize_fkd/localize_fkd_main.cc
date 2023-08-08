@@ -84,6 +84,7 @@ int steer_joystick_idx = 0;
 int drive_joystick_idx = 4;
 
 float first_command_time = -1;
+int first_rs_odom_secs = -1;
 
 bool realsense_imu = false;
 bool vectornav_imu = false;
@@ -189,7 +190,12 @@ void CommandCallback(const geometry_msgs::TwistStamped& msg) {
 // }
 
 void RSOdomCallback(const nav_msgs::Odometry& msg) {
-  float time = (((float) (msg.header.stamp.sec - 1682984323)) + ((float) msg.header.stamp.nsec) * 1e-9);
+  if (first_rs_odom_secs < 0) {
+    first_rs_odom_secs = msg.header.stamp.sec;
+    std::cout << first_rs_odom_secs << std::endl;
+  }
+
+  float time = (((float) (msg.header.stamp.sec - first_rs_odom_secs)) + ((float) msg.header.stamp.nsec) * 1e-9);
 
   // get last vel and pos info
   vector<float> data(7);

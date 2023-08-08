@@ -142,6 +142,9 @@ class LocalizeFKD {
   void AddNextBetweenFactor();
   void GetFKDInput(float*);
 
+  void RunWithFKD();
+  void RunWithOdom();
+
  private:
 
   LandmarkExtractor extractor_;
@@ -182,6 +185,7 @@ class LocalizeFKD {
   std::vector<Eigen::Vector2f> landmarks_;  
 
   int pose_ctr_;
+  int next_fkd_pose_;
   int next_optim_pose_;
   // Map of the environment.
 
