@@ -42,6 +42,9 @@ using namespace std;
 bool PRINT_DEBUG = false;
 
 DEFINE_bool(fkd, false, "Use FKD for between factors");
+DEFINE_int32(optimize_every, 1, "Number of fkd cycles to wait before running slam backend");
+
+const int NEXT_FKD_INCR = 10;
 
 namespace {
 ros::Publisher viz_pub_;
@@ -67,6 +70,7 @@ LocalizeFKD::LocalizeFKD(const string& map_name, ros::NodeHandle* n) :
     pose_ctr_(1),
     next_fkd_pose_(31),
     next_optim_pose_(31),
+    next_optim_incr_(FLAGS_optimize_every * NEXT_FKD_INCR),
     prior_noise_(gtsam::noiseModel::Diagonal::Sigmas(gtsam::Vector3(0.3, 0.3, 0.1))),
     odometry_noise_(gtsam::noiseModel::Diagonal::Sigmas(gtsam::Vector3(0.2, 0.2, 0.1))),
     landmark_noise_(noiseModel::Diagonal::Sigmas(Vector2(0.05, 0.01))),
@@ -252,7 +256,10 @@ void LocalizeFKD::AddNewPose() {
     Eigen::Rotation2Df r1(-prev_robot_angle_);
     Eigen::Vector2f delta_pose = r1*(robot_loc_ - prev_robot_loc_);
     float delta_angle = AngleDiff(robot_angle_, prev_robot_angle_);
-    estimates_.insert(pose_ids_[pose_ctr_], gtsam::Pose2(robot_loc_.x(), robot_loc_.y(), robot_angle_));
+
+    // insert the estimate as the previous estimate pose plus delta pose
+    Pose2 estimate = estimates_.at<Pose2>(pose_ids_[pose_ids_.size() - 2]) * Pose2(delta_pose.x(), delta_pose.y(), delta_angle);
+    estimates_.insert(pose_ids_[pose_ctr_], estimate);
 
     // These two lines are now done by the Pytorch model instead of odometry in AddBetweenFactors
     if (pose_ids_.size() < 32) {
@@ -446,13 +453,13 @@ void LocalizeFKD::RunWithFKD() {
     // std::cout << pose_ctr_ << std::endl;
     AddBetweenFactors();
     // OptimizeEstimates();
-    next_fkd_pose_ += 10;
+    next_fkd_pose_ += NEXT_FKD_INCR;
   }
 
   if (pose_ctr_ == next_optim_pose_) {
     // std::cout << pose_ctr_ << std::endl;
     OptimizeEstimates();
-    next_optim_pose_ += 20;
+    next_optim_pose_ += next_optim_incr_;
   }
 }
 
@@ -464,7 +471,7 @@ void LocalizeFKD::RunWithOdom() {
   if (pose_ctr_ == next_optim_pose_) {
     // std::cout << pose_ctr_ << std::endl;
     OptimizeEstimates();
-    next_optim_pose_ += 20;
+    next_optim_pose_ += next_optim_incr_;
   }
 }
 

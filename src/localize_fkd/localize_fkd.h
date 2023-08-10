@@ -187,6 +187,7 @@ class LocalizeFKD {
   int pose_ctr_;
   int next_fkd_pose_;
   int next_optim_pose_;
+  int next_optim_incr_;
   // Map of the environment.
 
   // slam things
